@@ -8,8 +8,7 @@
 :root{--acc:#b5652d;--acc2:#d98349;--bg:#0f0e0e;--panel:#171514;--panel2:#1f1c1a;--line:#2e2a27;--text:#ece8e3;--muted:#a39b93;--tint:rgba(181,101,45,.16);--glow:rgba(181,101,45,.26)}
 [data-theme="blue"]{--acc:#3a78cf;--acc2:#6aa3f0;--bg:#0c0f14;--panel:#141922;--panel2:#1b2230;--line:#273044;--tint:rgba(58,120,207,.18);--glow:rgba(58,120,207,.28)}
 *{box-sizing:border-box}
-body{margin:0;min-height:100vh;display:flex;flex-direction:column;background:radial-gradient(800px 500px at 50% 35%,var(--glow),transparent 65%),var(--bg);color:var(--text);font-family:'Fira Sans',system-ui,sans-serif;line-height:1.5;overflow-x:hidden}
-#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+body{margin:0;min-height:100vh;display:flex;flex-direction:column;background:var(--bg);color:var(--text);font-family:'Fira Sans',system-ui,sans-serif;line-height:1.5;overflow-x:hidden}
 .top{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center;max-width:1180px;width:100%;margin:0 auto;padding:18px 22px;border-bottom:1px solid var(--line)}
 .logo{font-family:Cinzel,Georgia,serif;font-weight:700;font-size:1.7rem;letter-spacing:.04em;color:#fff}
 .sw{display:flex;align-items:center;gap:9px;font-size:.88rem;color:var(--muted);cursor:pointer;user-select:none}
@@ -37,8 +36,10 @@ p{max-width:520px;margin:0 auto;color:var(--muted);font-size:1.08rem;animation:f
 @keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 @keyframes spin{to{transform:rotate(360deg)}}@keyframes pulse{50%{opacity:.35;transform:scale(1.25)}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important}.big span,h1,p,.hint,.cta{opacity:1!important}}
+*,*::before,*::after{animation:none!important;transition:none!important;transform:none!important}
+h1 span,.chip,.big span{opacity:1!important}
+.line{width:220px!important}
 </style></head><body>
-<canvas id="fx"></canvas>
 <div class="top"><div class="logo">ALEFORGE</div><div class="sw" id="sw">Blue <i></i> Copper</div></div>
 <main><div>
 <div class="big"><span>4</span><span class="ring"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="45"/></svg></span><span>4</span></div>
@@ -49,13 +50,4 @@ p{max-width:520px;margin:0 auto;color:var(--muted);font-size:1.08rem;animation:f
 </div></main>
 <script>
 document.getElementById('sw').onclick=()=>{const h=document.documentElement;h.dataset.theme=h.dataset.theme==='copper'?'blue':'copper'};
-const cv=document.getElementById('fx'),x=cv.getContext('2d');let W,H,P=[];
-function rs(){W=cv.width=innerWidth;H=cv.height=innerHeight}rs();addEventListener('resize',rs);
-for(let i=0;i<50;i++)P.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*2+.6,v:Math.random()*.6+.25,d:Math.random()*6,a:Math.random()*.6+.2});
-let col='#d98349',f=0;
-(function loop(){f++;if(f%30===1)col=getComputedStyle(document.documentElement).getPropertyValue('--acc2').trim();
- x.clearRect(0,0,W,H);x.fillStyle=col;
- P.forEach(p=>{p.y-=p.v;p.d+=.02;p.x+=Math.sin(p.d)*.4;if(p.y<-5){p.y=H+5;p.x=Math.random()*W}
-  x.globalAlpha=p.a*(p.y/H);x.beginPath();x.arc(p.x,p.y,p.r,0,7);x.fill()});
- requestAnimationFrame(loop)})();
 </script></body></html>
