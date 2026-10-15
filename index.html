@@ -67,16 +67,16 @@ a.logo{text-decoration:none;cursor:pointer}
 <div class="cta"><a id="open" href="https://aeriskr.github.io/works/1" target="_blank" rel="noopener"><span>&rarr;</span>Open Work</a></div></div>
 <div class="win"><div class="bar"><i></i><i></i><i></i></div><div class="in">
 <h3>Wanna see work of month?</h3>
-<p>Pick a month. Month 1 starts from September.</p>
+<p>Pick a month. Month 1 starts from October.</p>
 <div class="chips" id="chips"></div>
-<div class="desc" id="desc"><b>Month 1</b> &middot; September work</div>
+<div class="desc" id="desc"><b>Month 1</b> &middot; October work</div>
 <a class="url" id="url" href="https://aeriskr.github.io/works/1" target="_blank" rel="noopener">https://aeriskr.github.io/works/<em>1</em></a>
 </div></div></section></div>
 <script>
 const t=document.getElementById('t');
 "MY WORK".split('').forEach((c,i)=>{const s=document.createElement('span');s.textContent=c===' '?'\u00a0':c;if(i>2)s.className='w';s.style.animationDelay=(.25+i*.09)+'s';t.appendChild(s)});
 const base='https://aeriskr.github.io/works/';
-const M=['September','October','November','December','January','February','March','April','May','June','July','August'];
+const M=['October','November','December','January','February','March','April','May','June','July','August','September'];
 const ch=document.getElementById('chips'),de=document.getElementById('desc'),ur=document.getElementById('url');
 M.forEach((m,i)=>{const n=i+1,a=document.createElement('a');a.className='chip';a.href=base+n;a.target='_blank';a.rel='noopener';
  a.innerHTML='<b>'+n+'</b><small>'+m.slice(0,3)+'</small>';a.style.animationDelay=(1+i*.05)+'s';
