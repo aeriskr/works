@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="copper"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page Not Found</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Fira+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--acc:#b5652d;--acc2:#d98349;--bg:#0f0e0e;--panel:#171514;--panel2:#1f1c1a;--line:#2e2a27;--text:#ece8e3;--muted:#a39b93;--tint:rgba(181,101,45,.16);--glow:rgba(181,101,45,.26)}
+[data-theme="blue"]{--acc:#3a78cf;--acc2:#6aa3f0;--bg:#0c0f14;--panel:#141922;--panel2:#1b2230;--line:#273044;--tint:rgba(58,120,207,.18);--glow:rgba(58,120,207,.28)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:flex;flex-direction:column;background:radial-gradient(800px 500px at 50% 35%,var(--glow),transparent 65%),var(--bg);color:var(--text);font-family:'Fira Sans',system-ui,sans-serif;line-height:1.5;overflow-x:hidden}
+#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.top{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center;max-width:1180px;width:100%;margin:0 auto;padding:18px 22px;border-bottom:1px solid var(--line)}
+.logo{font-family:Cinzel,Georgia,serif;font-weight:700;font-size:1.7rem;letter-spacing:.04em;color:#fff}
+.sw{display:flex;align-items:center;gap:9px;font-size:.88rem;color:var(--muted);cursor:pointer;user-select:none}
+.sw i{width:46px;height:24px;border-radius:99px;background:var(--panel2);border:1px solid var(--line);position:relative}
+.sw i::after{content:"";position:absolute;top:3px;left:4px;width:16px;height:16px;border-radius:50%;background:var(--acc2);transition:.25s}
+[data-theme="copper"] .sw i::after{left:25px}
+main{position:relative;z-index:1;flex:1;display:grid;place-items:center;text-align:center;padding:30px 22px 60px}
+.big{display:flex;justify-content:center;align-items:center;gap:6px;font-family:Cinzel,Georgia,serif;font-weight:700;font-size:clamp(5rem,20vw,11rem);line-height:1}
+.big span{display:inline-block;opacity:0;animation:drop .9s cubic-bezier(.2,.9,.3,1.3) forwards}
+.big span:nth-child(3){animation-delay:.3s}.big span:nth-child(2){animation-delay:.15s}
+.big span:first-child,.big span:last-child{color:var(--text)}
+.ring{width:.8em;height:.8em;position:relative;display:grid;place-items:center}
+.ring svg{position:absolute;inset:0;width:100%;height:100%;animation:spin 8s linear infinite}
+.ring circle{fill:none;stroke:var(--acc2);stroke-width:5;stroke-dasharray:14 9;stroke-linecap:round}
+.ring::after{content:"?";font-size:.42em;color:var(--acc2);animation:pulse 2s ease-in-out infinite}
+h1{margin:10px 0 8px;font-size:clamp(1.5rem,4vw,2.2rem);font-weight:600;animation:fade .8s .6s both}
+p{max-width:520px;margin:0 auto;color:var(--muted);font-size:1.08rem;animation:fade .8s .8s both}
+.hint{display:inline-block;margin-top:22px;padding:11px 16px;background:var(--panel);border:1px solid var(--line);border-radius:10px;font-family:ui-monospace,Consolas,monospace;font-size:.85rem;color:var(--text);animation:fade .8s 1s both}
+.hint em{font-style:normal;color:var(--acc2);font-weight:700}
+.cta{margin-top:28px;animation:fade .8s 1.2s both}
+.cta a{display:inline-flex;align-items:center;gap:12px;color:#fff;text-decoration:none;font-weight:500}
+.cta span{width:38px;height:38px;border-radius:50%;background:var(--acc);display:grid;place-items:center;transition:.3s}
+.cta a:hover span{transform:translateX(-6px);box-shadow:0 0 0 6px var(--tint)}
+@keyframes drop{from{opacity:0;transform:translateY(-120px) rotate(-8deg)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes pulse{50%{opacity:.35;transform:scale(1.25)}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}.big span,h1,p,.hint,.cta{opacity:1!important}}
+</style></head><body>
+<canvas id="fx"></canvas>
+<div class="top"><div class="logo">ALEFORGE</div><div class="sw" id="sw">Blue <i></i> Copper</div></div>
+<main><div>
+<div class="big"><span>4</span><span class="ring"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="45"/></svg></span><span>4</span></div>
+<h1>Nothing here yet</h1>
+<p>Maybe there is no work for this month yet, or the link is wrong. Check the link and try again.</p>
+<div class="hint">https://aeriskr.github.io/works/<em>1</em> &ndash; <em>12</em></div>
+<div class="cta"><a href="https://aeriskr.github.io/"><span>&larr;</span>Back to Home</a></div>
+</div></main>
+<script>
+document.getElementById('sw').onclick=()=>{const h=document.documentElement;h.dataset.theme=h.dataset.theme==='copper'?'blue':'copper'};
+const cv=document.getElementById('fx'),x=cv.getContext('2d');let W,H,P=[];
+function rs(){W=cv.width=innerWidth;H=cv.height=innerHeight}rs();addEventListener('resize',rs);
+for(let i=0;i<50;i++)P.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*2+.6,v:Math.random()*.6+.25,d:Math.random()*6,a:Math.random()*.6+.2});
+let col='#d98349',f=0;
+(function loop(){f++;if(f%30===1)col=getComputedStyle(document.documentElement).getPropertyValue('--acc2').trim();
+ x.clearRect(0,0,W,H);x.fillStyle=col;
+ P.forEach(p=>{p.y-=p.v;p.d+=.02;p.x+=Math.sin(p.d)*.4;if(p.y<-5){p.y=H+5;p.x=Math.random()*W}
+  x.globalAlpha=p.a*(p.y/H);x.beginPath();x.arc(p.x,p.y,p.r,0,7);x.fill()});
+ requestAnimationFrame(loop)})();
+</script></body></html>
